@@ -7,8 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 // import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-// const sdk = require('node-appwrite');
-// import { databases } from '@/lib/appwrite.config';
+import { useRouter } from 'next/navigation';
 
 
 function Donor() {
@@ -20,6 +19,8 @@ function Donor() {
   const [phone_num, setPhone_num] = useState("");
   const [items, setItems] = useState("");
   const [location, setLocation] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault(); // Prevent page reload
@@ -43,6 +44,8 @@ function Donor() {
 
       if (response.ok) {
         const data = await response.json();
+
+        router.push('/thanks1');
         console.log('Document created:', data);
         // Reset form after successful submission
         setName('');

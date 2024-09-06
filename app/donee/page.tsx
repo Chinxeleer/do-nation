@@ -29,6 +29,7 @@ return (
   
 // Define an interface for donor items
 interface DonorItem {
+  $id: string;
   name: string;
   surname: string;
   email: string;
@@ -65,6 +66,35 @@ function Donee() {
         console.error("No data to be fetched", e);
       });
   }, []);
+
+   // Function to delete a document
+   const handleDelete = async (documentId: string) => {
+    try {
+      const response = await fetch(`/api/deleteDonations`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ doc_id: documentId }), // Pass the document ID
+      });
+
+      if (response.ok) {
+        // Remove the deleted item from the state
+        setDonorsItems((prevItems) =>
+          prevItems.filter((item) => item.$id !== documentId)
+        );
+
+        router.push('/thanks');
+        console.log('Document deleted successfully');
+      } else {
+        console.error('Failed to delete document');
+      }
+    } catch (error) {
+      console.error('Error deleting document:', error);
+    }
+  };
+
+
 
   return (
     <div className="grid min-h-screen w-full overflow-hidden lg:grid-cols-[280px_1fr]">
@@ -130,7 +160,7 @@ function Donee() {
                         <TableCell className="font-medium">{item.location}</TableCell>
                         <TableCell className="font-medium">{item.items}</TableCell>
                         <TableCell className="text-right">
-                        <Button className="inline-flex h-8 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                        <Button onClick={() => handleDelete(item.$id)} className="inline-flex h-8 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
                             Request
                         </Button>
                         </TableCell>
