@@ -1,11 +1,8 @@
-import Link from "next/link"
-
-
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-[url('/hero-bg.jpg')] bg-cover bg-center">
           <div className="container px-4 md:px-6 text-center">
@@ -14,8 +11,9 @@ export default function Home() {
                 Make a Difference with Your Donation
               </h1>
               <p className="text-xl text-muted-foreground">
-                Your contribution can help us provide essential aid and support to those in need. Join us in making a
-                positive impact on our community.
+                Your contribution can help us provide essential aid and support
+                to those in need. Join us in making a positive impact on our
+                community.
               </p>
               <div className="flex justify-center gap-4">
                 <Link
@@ -25,7 +23,6 @@ export default function Home() {
                 >
                   Donate Now
                 </Link>
-
               </div>
             </div>
           </div>
