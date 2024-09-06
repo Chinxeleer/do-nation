@@ -1,12 +1,5 @@
-const {
-  PROJECT_ID,
-  API_KEY,
-  // DO_NATION_DB,
-  // DONEE_COLLECTION_ID,
-  // DONOR_COLLECTION_ID,
-} = process.env;
-
-import { Client, Databases, Account } from "node-appwrite";
+const { PROJECT_ID, API_KEY } = process.env;
+import { Client, Databases, Account, Users, ID } from "node-appwrite";
 
 type Session = { value: string } | undefined;
 
@@ -43,7 +36,28 @@ const createSessionClient = async (session: Session) => {
     },
   };
 };
-export { createAdminClient, createSessionClient };
-// export const account = new Account(client);
-// export const databases = new Databases(client);
-//
+interface UserData {
+  name: string;
+  phone: string;
+  password: string;
+  email: string;
+}
+const createUserClient = async (formData: UserData) => {
+  const client = new Client()
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject(PROJECT_ID!) // Your project ID
+    .setKey(API_KEY!); // Your secret API key
+
+  const users = new Users(client);
+  const { email, password, phone, name } = formData;
+  const result = await users.create(
+    ID.unique(), // email (optional)
+    `${email}`, // phone (optional)
+    `${phone}`, // password (optional)
+    `${password}`, // name (optional)
+    `${name}`,
+  );
+  return result;
+};
+
+export { createAdminClient, createSessionClient, createUserClient };
