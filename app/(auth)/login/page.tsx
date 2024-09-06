@@ -22,7 +22,7 @@ function Login() {
       path: "/donee",
     });
 
-    redirect("/donee");
+    redirect("/donor");
   }
   return (
     <div className="flex justify-center items-center min-h-full">
