@@ -1,4 +1,4 @@
-import { SignInForm } from "@/components/authentication-form";
+import { LoginForm } from "@/components/login-form";
 import { createAdminClient } from "@/lib/appwrite.config";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -8,7 +8,7 @@ function Login() {
   async function createSession(formData: FormData) {
     "use server";
     const data = Object.fromEntries(formData);
-    const { email, password } = data;
+    const { email, password, role } = data;
     const { account } = await createAdminClient();
     const session = await account.createEmailPasswordSession(
       `${email}`,
@@ -22,11 +22,11 @@ function Login() {
       path: "/donee",
     });
 
-    redirect("/donor");
+    redirect(`/${role}`);
   }
   return (
     <div className="flex justify-center items-center min-h-full">
-      <SignInForm action={createSession} />
+      <LoginForm action={createSession} />
     </div>
   );
 }

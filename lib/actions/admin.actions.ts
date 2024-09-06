@@ -18,7 +18,6 @@ export async function getDoneeDocument() {
     DO_NATION_DB!,
     DONEE_COLLECTION_ID!,
   );
-  console.log(donee);
 
   return { donee };
 }

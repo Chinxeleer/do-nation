@@ -17,7 +17,6 @@ export async function getUser() {
       DO_NATION_DB!,
       DONOR_COLLECTION_ID!,
     );
-    console.log(donee);
 
     return { donee };
   } catch (error) {

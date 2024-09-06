@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SVGProps } from "react";
 
 export default function Component() {
   return (
@@ -28,7 +29,7 @@ export default function Component() {
   );
 }
 
-function FrownIcon(props) {
+function FrownIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
