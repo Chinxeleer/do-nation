@@ -37,7 +37,7 @@ export default function Component() {
         <CircleCheckIcon className="mx-auto h-12 w-12 text-primary" />
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Thank you!</h1>
         <p className="mt-4 text-muted-foreground">
-          You have successfully requested for a meal. Hope you have a lovely day.
+          You have successfully requested for a donation. Hope you have a lovely day.
         </p>
         <div className="mt-6">
           <Button onClick={handleSignOutClick} className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
