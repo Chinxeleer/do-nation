@@ -1,6 +1,5 @@
 const { PROJECT_ID, API_KEY } = process.env;
 import { Client, Databases, Account, Users, ID } from "node-appwrite";
-
 type Session = { value: string } | undefined;
 
 const createAdminClient = async () => {
